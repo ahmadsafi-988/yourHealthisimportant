@@ -1,0 +1,355 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  /* direction: rtl; */
+}
+
+body {
+  min-height: 100vh;
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  grid-template-rows: 100px 1fr 100px;
+  grid-template-areas:
+    "head head head head head head head head head head head head"
+    "main main main main main main main main main main main main"
+    "footer footer footer footer footer footer footer footer footer footer footer footer";
+  background-color: white;
+  font-family: "Cairo", sans-serif;
+  overflow-x: hidden;
+}
+
+/* layout for just header*/
+body .header {
+  grid-area: head;
+  padding-top: 10px;
+  background-color: hsl(353, 100%, 62%);
+  /* border-bottom-left-radius: 20%; */
+  position: fixed;
+  width: 100%;
+  z-index: 10000;
+}
+
+body .header .container {
+  width: calc(100% - 100px);
+  height: 100%;
+  padding-left: 15px;
+  padding-right: 15px;
+  margin: auto;
+  display: grid;
+  grid-template-columns: repeat(10, 1fr);
+  grid-template-rows: 80px;
+  grid-template-areas: "logo logo nav nav nav nav nav nav nav nav";
+  font-weight: bold;
+}
+
+body .header .container .logo {
+  grid-area: logo;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-size: 32px;
+  animation-name: slide-in;
+  animation-duration: 0.5s;
+}
+
+body .header .container .navbar {
+  grid-area: nav;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  font-size: 18px;
+  list-style: none;
+}
+
+body .header .container .navbar .one {
+  height: 50%;
+  width: 70px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 10%;
+  background-color: white;
+  color: hsl(356, 100%, 66%);
+}
+
+body .header .container .navbar .two {
+  border-bottom: 2px solid white;
+}
+
+body .header .container .navbar .one a {
+  color: hsl(353, 100%, 62%);
+}
+
+body .header .container .navbar li {
+  width: calc((100% / 5));
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+}
+
+body .header .container .navbar > li {
+  padding-bottom: 10px;
+  /* line-height: 2px; */
+}
+
+body .header .container .navbar li a {
+  color: white;
+  text-decoration: none;
+  text-align: center;
+}
+
+/* dropdown menu*/
+body .header .container .navbar li .dropdown {
+  visibility: hidden;
+  opacity: 0;
+  position: absolute;
+  text-align: center;
+  top: 100%;
+  left: 0;
+  width: 100%;
+  background-color: white;
+  border-radius: 10px;
+  z-index: 99;
+  transition: visibility 0s, opacity 1s ease;
+}
+
+body .header .container .navbar li .dropdown ul {
+  width: fit-content;
+  width: 100%;
+}
+
+body .header .container .navbar li .dropdown li {
+  /* display: block; */
+  width: 100%;
+  font-size: 16px;
+}
+
+body .header .container .navbar li .dropdown li a {
+  color: black;
+}
+
+body .header .container .navbar li:hover .dropdown {
+  visibility: visible;
+  opacity: 1;
+  /* transition: opacity 1s ease; */
+}
+
+.one {
+  animation-name: slide-in;
+  animation-duration: 0.75s;
+}
+
+.two {
+  animation-name: slide-in;
+  animation-duration: 1s;
+}
+
+.three {
+  animation-name: slide-in;
+  animation-duration: 1.25s;
+}
+
+.four {
+  animation-name: slide-in;
+  animation-duration: 1.5s;
+}
+
+.five {
+  animation-name: slide-in;
+  animation-duration: 1.75s;
+}
+
+@keyframes slide-in {
+  from {
+    transform: translateY(-100%);
+  }
+
+  to {
+    transform: translateY(0);
+  }
+}
+
+@keyframes slide-right {
+  from {
+    transform: translate(-100%, -100%);
+  }
+
+  to {
+    transform: translate(0, -40px);
+  }
+}
+
+@keyframes slide-from-left {
+  from {
+    transform: translateX(-100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+/**/
+
+body .main {
+  grid-area: main;
+  width: calc(100% - 100px);
+  height: 100%;
+  padding-left: 15px;
+  padding-right: 15px;
+  margin: auto;
+  display: flex;
+  flex-wrap: wrap;
+  margin-top: 40px;
+}
+
+body .main .container1 {
+  display: flex;
+  flex-direction: row;
+  /* flex-grow: 1; */
+  margin-top: 25px;
+  margin-bottom: 50px;
+  width: 100%;
+  /* animation-name: slide-from-left;
+  animation-duration: 1s; */
+  opacity: 0;
+}
+
+body .main .container1.first {
+  opacity: 1;
+  animation-name: slide-from-left;
+  animation-duration: 1s;
+}
+
+body .main > .h {
+  margin-right: 25px;
+  margin-left: 25px;
+  font-size: 20px;
+  margin-bottom: 20px;
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  animation-name: slide-from-left;
+  animation-duration: 1s;
+}
+
+body .main .container1 .factor-content {
+  width: 50%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-content: center;
+}
+
+body .main .container1 .factor-content .first-sentence {
+  width: 100%;
+}
+
+.factor-content p {
+  width: 100%;
+  direction: rtl;
+  text-align: justify;
+  font-size: 25px;
+}
+.factor-image img {
+  display: flex;
+  width: 100%;
+  height: 100%;
+  padding-right: 25px;
+  padding-left: 25px;
+  border-radius: 10%;
+}
+
+.factor-image {
+  width: 50%;
+  flex-grow: 1;
+}
+
+.factor-content p span {
+  font-weight: bold;
+}
+
+body .footer {
+  grid-area: footer;
+  background-color: rgb(255, 61, 84);
+  height: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+  align-items: center;
+  margin-top: 20px;
+}
+
+body .footer ul {
+  display: flex;
+  justify-content: center;
+  list-style-type: none;
+}
+
+body .footer .title {
+  font-size: 32px;
+  color: white;
+  position: relative;
+}
+
+body .footer .title::after {
+  content: "جميع حقوق النشر محفوظة  ";
+  position: absolute;
+  top: 90%;
+  left: 7%;
+  font-size: 12px;
+}
+
+body .footer ul li {
+  margin-right: 20px;
+}
+
+body .footer ul li a {
+  color: white;
+  text-decoration: none;
+}
+
+body .footer ul li a:hover {
+  border-bottom: 2px solid white;
+}
+
+@keyframes slide-from-left {
+  from {
+    transform: translateX(-100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+@keyframes slide-from-right {
+  from {
+    transform: translateX(150%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+.box-shadow {
+  box-shadow: 0 10px 5px rgba(0, 0, 0, 0.1);
+  transition-duration: 1s;
+}
+
+body .main .container1.sliding-left {
+  animation-name: slide-from-left;
+  animation-duration: 1s;
+  opacity: 1;
+}
+
+body .main .container1.sliding-right {
+  animation-name: slide-from-right;
+  animation-duration: 1s;
+  opacity: 1;
+}

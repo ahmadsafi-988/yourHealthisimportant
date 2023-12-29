@@ -1,0 +1,489 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  /* direction: rtl; */
+  /* overflow-x: hidden; */
+}
+
+body {
+  min-height: 100vh;
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  grid-template-rows: 500px 1fr 100px;
+  grid-template-areas:
+    "head head head head head head head head head head head head"
+    "main main main main main main main main main main main main"
+    "footer footer footer footer footer footer footer footer footer footer footer footer";
+  background-color: white;
+  font-family: "Cairo", sans-serif;
+  overflow-x: hidden;
+}
+
+/* layout for just header*/
+body .header {
+  grid-area: head;
+  width: 100%;
+  height: 100%;
+  background-color: hsl(353, 100%, 62%);
+  border-bottom-left-radius: 20%;
+
+  margin: auto;
+  display: grid;
+  grid-template-columns: repeat(10, 1fr);
+  grid-template-rows: 80px 1fr;
+  grid-template-areas:
+    "stick stick stick stick stick stick stick stick stick stick "
+    "para para para para para para para para para para";
+  font-weight: bold;
+}
+
+body .header .stick {
+  grid-area: stick;
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(10, 1fr);
+  grid-template-rows: 80px;
+  grid-template-areas: "logo logo nav nav nav nav nav nav nav nav";
+  padding-left: 50px;
+  padding-right: 50px;
+  padding-top: 10px;
+  position: fixed;
+  background-color: hsl(353, 100%, 62%);
+  z-index: 1000000;
+  /* box-shadow: 0 10px 5px rgba(0, 0, 0, 0.1); */
+}
+
+body .header .stick .logo {
+  grid-area: logo;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-size: 32px;
+  animation-name: slide-in;
+  animation-duration: 0.5s;
+}
+body .header .stick .navbar {
+  grid-area: nav;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  font-size: 18px;
+  list-style: none;
+  /* position: fixed; */
+}
+
+body .header .navbar .one {
+  height: 50%;
+  width: 70px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 10%;
+  background-color: white;
+  color: hsl(356, 100%, 66%);
+}
+
+body .header .navbar .one a {
+  color: hsl(353, 100%, 62%);
+}
+
+body .header .navbar li {
+  width: calc((100% / 5));
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+}
+
+body .header .navbar > li {
+  padding-bottom: 10px;
+  /* line-height: 2px; */
+}
+
+body .header .navbar li a {
+  color: white;
+  text-decoration: none;
+  text-align: center;
+}
+
+/* dropdown menu*/
+body .header .navbar li .dropdown {
+  visibility: hidden;
+  opacity: 0;
+  position: absolute;
+  text-align: center;
+  top: 100%;
+  left: 0;
+  width: 100%;
+  background-color: white;
+  border-radius: 10px;
+  z-index: 99;
+  transition: visibility 0s, opacity 1s ease;
+}
+
+body .header .navbar li .dropdown ul {
+  width: fit-content;
+  width: 100%;
+}
+
+body .header .navbar li .dropdown li {
+  /* display: block; */
+  width: 100%;
+  font-size: 16px;
+}
+
+body .header .navbar li .dropdown li a {
+  color: black;
+}
+
+body .header .navbar li:hover .dropdown {
+  visibility: visible;
+  opacity: 1;
+  /* transition: opacity 1s ease; */
+}
+
+body .header .paragraph {
+  grid-area: para;
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  flex-wrap: wrap;
+}
+
+body .header .paragraph .head {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transform: translateY(-40px);
+  color: white;
+  font-size: 40px;
+  font-weight: bold;
+  animation-name: slide-right;
+  animation-duration: 0.25s;
+}
+
+body .header .paragraph .p {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transform: translateY(-40px);
+  color: white;
+  font-size: 24px;
+  font-weight: bold;
+  animation-name: slide-right;
+  animation-duration: 0.5s;
+}
+
+.one {
+  animation-name: slide-in;
+  animation-duration: 0.75s;
+}
+.two {
+  animation-name: slide-in;
+  animation-duration: 1s;
+}
+.three {
+  animation-name: slide-in;
+  animation-duration: 1.25s;
+}
+.four {
+  animation-name: slide-in;
+  animation-duration: 1.5s;
+}
+.five {
+  animation-name: slide-in;
+  animation-duration: 1.75s;
+}
+
+@keyframes slide-in {
+  from {
+    transform: translateY(-100%);
+  }
+  to {
+    transform: translateY(0);
+  }
+}
+@keyframes slide-right {
+  from {
+    transform: translate(-100%, -100%);
+  }
+  to {
+    transform: translate(0, -40px);
+  }
+}
+
+@keyframes slide-from-left {
+  from {
+    transform: translateX(-100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+@keyframes slide-from-right {
+  from {
+    transform: translateX(150%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+body .main {
+  grid-area: main;
+  width: calc(100% - 200px);
+  height: 100%;
+  padding-left: 15px;
+  padding-right: 15px;
+  margin: auto;
+  display: flex;
+  flex-wrap: wrap;
+  margin-top: 40px;
+}
+
+body .main .about {
+  width: 100%;
+  font-size: 45px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  /* animation-name: slide-from-left;
+  animation-duration: 1s; */
+  margin-bottom: 100px;
+}
+
+body .main .us {
+  width: 100%;
+  font-size: 24px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+body .main .goals {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  margin-bottom: 40px;
+}
+
+body .main .goals .g {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 45px;
+  margin-bottom: 20px;
+}
+
+body .main .goals .number {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  font-size: 35px;
+  color: #959595;
+}
+
+body .main .goals .goal {
+  width: 50%;
+  height: 150px;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  flex-wrap: wrap;
+  font-size: 24px;
+  direction: rtl;
+  opacity: 0;
+}
+
+body .main .goals .empty {
+  width: 50%;
+  height: 100px;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+body .main .video {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  width: 100%;
+  font-size: 45px;
+  opacity: 0;
+  margin-bottom: 80px;
+}
+
+body .main .video .title {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+body .main .video iframe {
+  width: 100%;
+  height: 500px;
+}
+
+body .main .goals .first {
+  border-left: 5px dotted #959595;
+  padding-left: 20px;
+}
+body .main .goals .second {
+  border-right: 5px dotted #959595;
+  padding-right: 20px;
+}
+
+body .main .goals .third {
+  border-left: 5px dotted #959595;
+  padding-left: 20px;
+}
+
+body .main .goals .fourth {
+  border-right: 5px dotted #959595;
+  padding-right: 20px;
+}
+
+body .main .goals .fifth {
+  border-left: 5px dotted #959595;
+  padding-left: 20px;
+}
+
+.box-shadow {
+  box-shadow: 0 10px 5px rgba(0, 0, 0, 0.1);
+  transition-duration: 1s;
+}
+
+.sliding-left {
+  animation-name: slide-from-left;
+  animation-duration: 1s;
+  opacity: 1;
+}
+.sliding-right {
+  animation-name: slide-from-left;
+  animation-duration: 1s;
+  opacity: 1;
+}
+
+body .main .video.sliding-left {
+  animation-name: slide-from-left;
+  animation-duration: 1s;
+  opacity: 1;
+}
+body .main .goals .goal.sliding-left {
+  animation-name: slide-from-left;
+  animation-duration: 1s;
+  opacity: 1;
+}
+
+body .main .goals .goal.sliding-right {
+  animation-name: slide-from-right;
+  animation-duration: 1s;
+  opacity: 1;
+}
+
+body .footer {
+  grid-area: footer;
+  background-color: rgb(255, 61, 84);
+  height: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+  align-items: center;
+  margin-top: 50px;
+}
+
+body .footer ul {
+  display: flex;
+  justify-content: center;
+  list-style-type: none;
+}
+
+body .footer .title {
+  font-size: 32px;
+  color: white;
+  position: relative;
+}
+
+body .footer .title::after {
+  content: "جميع حقوق النشر محفوظة  ";
+  position: absolute;
+  top: 90%;
+  left: 7%;
+  font-size: 12px;
+}
+
+body .footer ul li {
+  margin-right: 20px;
+}
+
+body .footer ul li a {
+  color: white;
+  text-decoration: none;
+}
+
+body .footer ul li a:hover {
+  border-bottom: 2px solid white;
+}
+
+body .team-members {
+  width: 100%;
+}
+
+body .main .team-members .TTT h1 {
+  font-size: 40px;
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  margin-bottom: 20px;
+}
+
+body .main .team-members > div {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  margin-bottom: 50px;
+  opacity: 0;
+}
+
+body .main .team-members > div.sliding-left {
+  animation-name: slide-from-left;
+  animation-duration: 1s;
+  opacity: 1;
+}
+body .main .team-members > div.sliding-right {
+  animation-name: slide-from-right;
+  animation-duration: 1s;
+  opacity: 1;
+}
+
+body .main .team-members > div > div {
+  width: 20%;
+  height: 200px;
+  padding: 10px;
+  border-radius: 10%;
+  box-shadow: 0 15px 20px rgba(0, 0, 0, 0.4);
+}
+
+body .main .team-members > div > div .info {
+  font-size: 20px;
+  height: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-content: center;
+}
+
+body .main .team-members > div > div .info div {
+  width: 100%;
+  text-align: center;
+}
